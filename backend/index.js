@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const Database = require('./connection.js'); // Altere o caminho conforme a estrutura do seu projeto
+const Database = require('./connection.js');
 
 const db = new Database();
 
