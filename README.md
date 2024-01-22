@@ -31,3 +31,14 @@
 
 - Instale a dependencia express para solicitações HTTP como GET, POST, PUT, DELETE, etc.
 - Comando: npm install express
+
+# Teste APi
+
+- Download do Site Oficial: https://www.postman.com/downloads/
+- Faça o download do arquivo .tar.gz (para linux)
+- Extraia o arquivo na pasta que foi baixado: tar -xzf Postman-linux-x64-*.tar.gz
+- Mova o Postman para /opt: sudo mv Postman /opt
+- Crie um link simbólico
+  - Crie um link simbólico para o executável do Postman para que você possa iniciar o Postman de qualquer lugar no terminal:
+  - sudo ln -s /opt/Postman/Postman /usr/bin/postman
+- Agora, você pode iniciar o Postman digitando postman no terminal.
