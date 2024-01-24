@@ -23,13 +23,17 @@ class Database {
     });
   }
 
-  query(sql, callback) {
-    this.connection.query(sql, (err, result) => {
+  query(sql, values, callback) {
+    this.connection.query(sql, values, (err, result) => {
       if (err) {
         console.error(`Erro na consulta SQL: ${err}`);
-        callback(err, null);
+        if (callback) {
+          callback(err, null);
+        }
       } else {
-        callback(null, result);
+        if (callback) {
+          callback(null, result);
+        }
       }
     });
   }
