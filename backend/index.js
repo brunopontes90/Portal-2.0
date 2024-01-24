@@ -18,6 +18,32 @@ app.get('/', (req, res) => {
   });
 });
 
+app.post('/post', (req, res) => {
+  const {
+    Nome,
+    Sobrenome,
+    DataNascimento,
+    Genero,
+    Endereco,
+    Telefone,
+    Email,
+    EAdmin,
+    Observacoes,
+    Senha
+  } = req.body;
+
+  let insertQuery = "INSERT INTO Pessoas (Nome, Sobrenome, DataNascimento, Genero, Endereco, Telefone, Email, EAdmin, Observacoes, Senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+  db.query(insertQuery, [Nome, Sobrenome, DataNascimento, Genero, Endereco, Telefone, Email, EAdmin, Observacoes, Senha], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Erro ao inserir os dados.');
+    } else {
+      res.send('Dados inseridos com sucesso.');
+    }
+  });
+});
+
 app.put('/put/:id', (req, res) => {
   const { id } = req.params;
   const updatedFields = req.body;
