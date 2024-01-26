@@ -46,4 +46,5 @@
 
 # Baixar o ReactJS
 
-- Comando para baixar o projeto: npx create-react-app nome_projeto_react
+- Comando para baixar o projeto: yes | npx create-react-app nome_projeto_react
+- Parametro yes para aceitar todas as perguntas na instalação
