@@ -48,3 +48,8 @@
 
 - Comando para baixar o projeto: yes | npx create-react-app nome_projeto_react
 - Parametro yes para aceitar todas as perguntas na instalação
+
+# BrowserRouter e ReactDom
+
+- npm install react-router-dom
+- npm install react-dom
