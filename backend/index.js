@@ -70,6 +70,18 @@ app.put('/put/:id', (req, res) => {
   });
 });
 
+app.delete('/delete/:id', (req, res) => {
+  const { id } = req.params;
+  let deleteQuery = "DELETE FROM Pessoas WHERE ID=?";
+  db.query(deleteQuery, [id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Erro ao deletar usuário.');
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 app.listen(3001, () => {
   console.log(`Servidor em execução`);
