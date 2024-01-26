@@ -42,3 +42,8 @@
   - Crie um link simbólico para o executável do Postman para que você possa iniciar o Postman de qualquer lugar no terminal:
   - sudo ln -s /opt/Postman/Postman /usr/bin/postman
 - Agora, você pode iniciar o Postman digitando postman no terminal.
+
+
+# Baixar o ReactJS
+
+- Comando para baixar o projeto: npx create-react-app nome_projeto_react
