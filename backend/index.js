@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const Database = require('./connection.js');
 
 const db = new Database();
 
 app.use(express.json());
+app.use(cors()); // Permitir todas as origens durante o desenvolvimento (você pode ajustar isso em produção)
 
 app.get('/', (req, res) => {
   let SQL = "SELECT * FROM Pessoas";
