@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 import Axios from "axios";
 import LoginPage from "./Auth/LoginPage";
+import ListAdmin from "./Pages/ListAdmin/ListAdmin";
+import ListUser from "./Pages/ListUser/ListUser";
 import { Route, Routes } from "react-router-dom";
 
 export const Users = createContext();
@@ -18,6 +20,8 @@ function App() {
     <Users.Provider value={data}>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/list-admin" element={<ListAdmin />} />
+        <Route path="/list-user" element={<ListUser />} />
       </Routes>
     </Users.Provider>
   );
