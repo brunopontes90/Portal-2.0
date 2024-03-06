@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import './LoginPage.css';
 import { Users } from "../App";
+import { Button, Form, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
 
 function LoginPage() {
+    const navigate = useNavigate();
     const data = useContext(Users);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const navigate = useNavigate();
 
-    const onFinish = (event) => {
-        event.preventDefault(); // Previne o comportamento padrão do formulário
+    const onFinish = () => {
 
         try {
             const user = data.find(user => user.Email === email && user.Senha === password);
@@ -22,8 +23,8 @@ function LoginPage() {
                 }
             } else {
                 alert('Email ou senha inválidos');
-                setEmail('');
-                setPassword('');
+                navigate('/');
+
             }
 
         } catch (error) {
@@ -31,23 +32,86 @@ function LoginPage() {
         }
     }
 
+    const onFinishFailed = (errorInfo) => {
+        console.log('Falha:', errorInfo);
+    };
+
     return (
-        <form onSubmit={onFinish}>
-            <h1>Login</h1>
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Entrar</button>
-        </form>
+        <div className='div-form'>
+            <Form
+                name="basic"
+                labelCol={{
+                    span: 8,
+                }}
+                initialValues={{
+                    remember: true,
+                }}
+                className='form'
+                autoComplete="off"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+            >
+                <div>
+                    <h1 className="h1-login">Login</h1>
+                </div>
+                <Form.Item
+                    name="email"
+                    label="Email"
+                    className='form-item'
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Por favor insira seu email!',
+                        },
+                    ]}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                >
+                    <Input
+                        type="email"
+                        value={email}
+                        className='input'
+                        placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    label="Senha"
+                    name="password"
+                    className='form-item'
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Por favor insira sua senha!',
+                        },
+                    ]}
+                >
+                    <Input.Password
+                        className='input'
+                        placeholder="Senha"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    wrapperCol={{
+                        offset: 8,
+                        span: 16,
+                    }}
+                    className='form-button'
+                >
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        className='button'
+                    >
+                        Entrar
+                    </Button>
+                </Form.Item>
+            </Form>
+        </div>
     );
 }
 
