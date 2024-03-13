@@ -1,12 +1,25 @@
-import { Table } from 'antd';
 import { Users } from "../../App";
 import { format } from 'date-fns';
-import React, { useContext } from "react";
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import React, { useContext, useState } from "react";
+import { Breadcrumb, Layout, Menu, Table, theme } from 'antd';
+import {
+    DeleteOutlined,
+    EditOutlined,
+    EyeOutlined,
+} from '@ant-design/icons';
 
+const { Header, Content, Footer } = Layout;
 
-function ListAdmin() {
+const items = new Array(3).fill(null).map((_, index) => ({
+    key: String(index + 1),
+    label: `nav ${index + 1}`,
+}));
+
+const App = () => {
     const data = useContext(Users);
+    const {
+        token: { colorBgContainer, borderRadiusLG },
+    } = theme.useToken();
 
     const columns = [
         {
@@ -68,6 +81,7 @@ function ListAdmin() {
             width: 100,
             render: () =>
                 <div>
+                    <EyeOutlined />
                     <EditOutlined />
                     <DeleteOutlined />
                 </div>,
@@ -92,16 +106,74 @@ function ListAdmin() {
         });
     }
 
-
     return (
-        <Table
-            columns={columns}
-            dataSource={getList()}
-            scroll={{
-                x: 1300,
-            }}
-        />
+        <Layout>
+            <Header
+                style={{
+                    top: 0,
+                    zIndex: 1,
+                    width: '100%',
+                    marginTop: -10,
+                    display: 'flex',
+                    position: 'sticky',
+                    alignItems: 'center',
+                }}
+            >
+                <div className="demo-logo" />
+                <Menu
+                    theme="dark"
+                    items={items}
+                    mode="horizontal"
+                    defaultSelectedKeys={['2']}
+                    style={{
+                        flex: 1,
+                        minWidth: 0,
+                    }}
+                />
+            </Header>
+            <Content
+                style={{
+                    padding: '0 48px',
+                }}
+            >
+                <Breadcrumb
+                    style={{
+                        margin: '16px 0',
+                    }}
+                >
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>List</Breadcrumb.Item>
+                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                </Breadcrumb>
+                <div
+                    style={{
+                        padding: 24,
+                        minHeight: 380,
+                        marginBottom: 10,
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                    }}
+                >
+                    <Table
+                        columns={columns}
+                        dataSource={getList()}
+                        scroll={{
+                            x: 1300,
+                        }}
+                    />
+                </div>
+            </Content>
+            <Footer
+                style={{
+                    bottom: 0,
+                    width: '100%',
+                    position: 'fixed',
+                    textAlign: 'center',
+                }}
+            >
+                Portal Usuários ©{new Date().getFullYear()} Created by Bruno Pontes
+            </Footer>
+        </Layout>
     );
-}
-
-export default ListAdmin;
+};
+export default App;
