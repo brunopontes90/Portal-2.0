@@ -1,21 +1,29 @@
 import { Users } from "../../App";
 import { format } from 'date-fns';
-import React, { useContext, useState } from "react";
-import { Breadcrumb, Layout, Menu, Table, theme } from 'antd';
+import React, { useContext } from "react";
+import { Layout, Menu, Table, theme } from 'antd';
 import {
     DeleteOutlined,
     EditOutlined,
     EyeOutlined,
+    LogoutOutlined,
 } from '@ant-design/icons';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
-const items = new Array(3).fill(null).map((_, index) => ({
-    key: String(index + 1),
-    label: `nav ${index + 1}`,
-}));
+const items = [
+    {
+        label: 'Logo'
+    },
+    {
+        label: 'Nome Usuario'
+    },
+    {
+        label: <LogoutOutlined />
+    }
+];
 
-const App = () => {
+const ListAdmin = () => {
     const data = useContext(Users);
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -108,48 +116,21 @@ const App = () => {
 
     return (
         <Layout>
-            <Header
-                style={{
-                    top: 0,
-                    zIndex: 1,
-                    width: '100%',
-                    marginTop: -10,
-                    display: 'flex',
-                    position: 'sticky',
-                    alignItems: 'center',
-                }}
-            >
-                <div className="demo-logo" />
-                <Menu
-                    theme="dark"
-                    items={items}
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    style={{
-                        flex: 1,
-                        minWidth: 0,
-                    }}
-                />
-            </Header>
+            <Menu
+                items={items}
+                mode="horizontal"
+            />
             <Content
                 style={{
                     padding: '0 48px',
                 }}
             >
-                <Breadcrumb
-                    style={{
-                        margin: '16px 0',
-                    }}
-                >
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
                 <div
                     style={{
                         padding: 24,
                         minHeight: 380,
                         marginBottom: 10,
+                        marginTop: 50,
                         background: colorBgContainer,
                         borderRadius: borderRadiusLG,
                     }}
@@ -176,4 +157,4 @@ const App = () => {
         </Layout>
     );
 };
-export default App;
+export default ListAdmin;
