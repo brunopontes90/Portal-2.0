@@ -1,13 +1,14 @@
 import { Users } from "../../App";
 import { format } from 'date-fns';
 import React, { useContext } from "react";
-import { Layout, Menu, Table, theme } from 'antd';
+import { Button, Layout, Menu, Table, theme, Tooltip } from 'antd';
 import {
     DeleteOutlined,
     EditOutlined,
     EyeOutlined,
     LogoutOutlined,
 } from '@ant-design/icons';
+import "./ListAdmin.css";
 
 const { Content, Footer } = Layout;
 
@@ -142,6 +143,24 @@ const ListAdmin = () => {
                             x: 1300,
                         }}
                     />
+                </div>
+                <div className="divButtonAdd">
+                    <Tooltip
+                        title="Adicionar"
+                    >
+                        <Button
+                            type="primary"
+                            shape="circle"
+                            style={{
+                                width: '60px',
+                                height: '60px',
+                                fontSize: '24pt',
+                                marginBottom: 10,
+                            }}
+                        >
+                            +
+                        </Button>
+                    </Tooltip>
                 </div>
             </Content>
             <Footer
