@@ -1,0 +1,16 @@
+.menu {
+    display: flex;
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.botton-exit {
+    display: flex;
+    margin-right: 150px;
+}
+
+p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+}

@@ -1,28 +1,16 @@
 import { Users } from "../../App";
 import { format } from 'date-fns';
 import React, { useContext } from "react";
-import { Button, Layout, Menu, Table, theme, Tooltip } from 'antd';
+import HeaderMenu from "../../Components/Menu/HeaderMenu";
+import { Button, Layout, Table, theme, Tooltip } from 'antd';
 import {
     DeleteOutlined,
     EditOutlined,
-    EyeOutlined,
-    LogoutOutlined,
+    EyeOutlined
 } from '@ant-design/icons';
 import "./ListAdmin.css";
 
 const { Content, Footer } = Layout;
-
-const items = [
-    {
-        label: 'Logo'
-    },
-    {
-        label: 'Nome Usuario'
-    },
-    {
-        label: <LogoutOutlined />
-    }
-];
 
 const ListAdmin = () => {
     const data = useContext(Users);
@@ -117,10 +105,7 @@ const ListAdmin = () => {
 
     return (
         <Layout>
-            <Menu
-                items={items}
-                mode="horizontal"
-            />
+            {<HeaderMenu/>}
             <Content
                 style={{
                     padding: '0 48px',
